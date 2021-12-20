@@ -1,0 +1,52 @@
+
+.chart-container{
+    margin-top:100px;
+    
+
+    height: 500px;
+    width: 600px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    align-self: center;
+
+}
+#myChart{
+   padding-top:50px;
+}
+header{
+    display:flex;
+    justify-content:center;
+    margin-top: 10px;
+    align-items:center;
+       background-color:#2EE59D;
+      height: 50px;
+       width:auto;
+}
+
+
+
+.button {
+    width: 100px;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.button:hover {
+    background-color: #2ee59d;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: rgb(255, 255, 255);
+    transform: translateX(-10px);
+}
