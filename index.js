@@ -3,7 +3,7 @@ const express = require('express');
 const requests = require('requests');
 const fetch = require('node-fetch');
 require('dotenv').config();
-const port = process.env.PORT|3000;
+const port = process.env.PORT||3000;
 // console.log(process.env);
 
 // import fetch from './node_modules/node-fetch';
