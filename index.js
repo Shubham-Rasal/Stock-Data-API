@@ -18,7 +18,7 @@ app.listen(port, () => console.log(`listening at ${port} `));
 app.get('/stock',async (request, response) => {
 
   console.log('got request!!');
-  console.log(request);
+  // console.log(request);
   const api_key=process.env.API_KEY;
   const api_url = `https://www.alphavantage.co/query?function=REAL_GDP&interval=annually&apikey=${api_key}`;
    const fresponse = await fetch(api_url);
