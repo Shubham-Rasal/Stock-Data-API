@@ -5,6 +5,18 @@ const fetch = require('node-fetch');
 require('dotenv').config();
 const port = process.env.PORT||3000;
 // console.log(process.env);
+const mysql = require('mysql');
+
+const con = mysql.createConnection({
+  host: "localhost",
+  user: "taz",
+  password: "password"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 // import fetch from './node_modules/node-fetch';
 const app = express();
