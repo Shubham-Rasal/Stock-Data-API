@@ -9,8 +9,9 @@ const mysql = require('mysql');
 
 const con = mysql.createConnection({
   host: "localhost",
-  user: "taz",
-  password: "password"
+  database:'stock_api_data',
+  user: "root",
+  password: "mysqlpass"
 });
 
 con.connect(function(err) {
