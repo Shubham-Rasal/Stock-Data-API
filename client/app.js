@@ -66,7 +66,8 @@ const myChart = new Chart(ctx, {
     }
 });
 
-
+// chart.canvas.parentNode.style.height = '400px';
+//     chart.canvas.parentNode.style.width = '500px';
 
 
 }
