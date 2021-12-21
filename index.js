@@ -17,6 +17,38 @@ const con = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected to database successfully!");
+  // con.query("CREATE DATABASE api", function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Database created");
+  // });
+  // var sql = "ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Table altered");
+  // var sql = "CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Table created");
+  // var sql = "INSERT INTO customers (name, address) VALUES ('Blue Qubits', 'Wall Street')";
+  // con.query(sql, function (err, result) {
+  //   if (err) throw err;
+  //   console.log("1 record inserted");
+  // con.query("SELECT name FROM customers", function (err, result, fields) {
+  //   if (err) throw err;
+  //   console.log(result[1]);
+  //   console.log(fields);
+// const adr="Highway 37";
+//   con.query("SELECT * FROM customers WHERE address = "+mysql.escape(adr), function (err, result) {
+//     if (err) throw err;
+var sql = "UPDATE customers SET address = 'Valley 345' WHERE address = 'Wall Street'";
+con.query(sql, function (err, result) {
+  if (err) throw err;
+  console.log(result.affectedRows + " record(s) updated");
+    console.log(result);
+ 
+  });
+
+
 });
 
 // import fetch from './node_modules/node-fetch';
