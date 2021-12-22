@@ -9,7 +9,7 @@ const mysql = require('mysql');
 
 const con = mysql.createConnection({
   host: "localhost",
-  database:'stock_api_data',
+  database:'api',
   user: "root",
   password: "mysqlpass"
 });
@@ -17,40 +17,32 @@ const con = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected to database successfully!");
-  // con.query("CREATE DATABASE api", function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Database created");
-  // });
+ 
+  
+
   // var sql = "ALTER TABLE customers ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
   // con.query(sql, function (err, result) {
   //   if (err) throw err;
   //   console.log("Table altered");
-  // var sql = "CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255))";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Table created");
-  // var sql = "INSERT INTO customers (name, address) VALUES ('Blue Qubits', 'Wall Street')";
-  // con.query(sql, function (err, result) {
-  //   if (err) throw err;
-  //   console.log("1 record inserted");
-  // con.query("SELECT name FROM customers", function (err, result, fields) {
-  //   if (err) throw err;
-  //   console.log(result[1]);
-  //   console.log(fields);
+
+
 // const adr="Highway 37";
 //   con.query("SELECT * FROM customers WHERE address = "+mysql.escape(adr), function (err, result) {
 //     if (err) throw err;
-var sql = "UPDATE customers SET address = 'Valley 345' WHERE address = 'Wall Street'";
-con.query(sql, function (err, result) {
-  if (err) throw err;
-  console.log(result.affectedRows + " record(s) updated");
-    console.log(result);
+// var sql = "UPDATE customers SET address = 'Valley 345' WHERE address = 'Wall Street'";
+// con.query(sql, function (err, result) {
+//   if (err) throw err;
+//   console.log(result.affectedRows + " record(s) updated");
+//     console.log(result);
  
-  });
+  // });
 
 
 });
 
+// con.end(()=>{
+//   console.log('connection ended')
+// });
 // import fetch from './node_modules/node-fetch';
 const app = express();
 app.use(express.static('client'));
@@ -70,5 +62,49 @@ app.get('/stock',async (request, response) => {
   const json= await fresponse.json();
   // console.log(json.data);
   response.json(json);
+  const stockData=json.data;
+
+ for (let index = stockData.length-1; index >0; index--) {
+   const element = stockData[index];
+   
+    insert(element.date.slice(0,4),element.value);
+ }
+
 
 });
+var counter=0;
+function insert(date,value) {
+  // console.log('hello');
+  counter++;
+  console.log(date);
+  console.log(value);
+  var sql = `INSERT INTO gdp_data (date, value) VALUES ('${date}', '${value}')`;
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log( counter+" record inserted");
+    console.log(result);
+});
+}
+function createTable(props){
+    var sql = `CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, ${props.one} VARCHAR(255), ${props.two} VARCHAR(255))`;
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table created");
+  });
+
+}
+function createDatabase(name){
+   con.query(`CREATE DATABASE ${name}`, function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+}
+function selectColumn(column_name,table_name){
+  
+  con.query(`SELECT ${column_name} FROM ${table_name}`, function (err, result, fields) {
+    if (err) throw err;
+    // console.log(result[1]);
+    console.log(fields);
+
+  });
+}
