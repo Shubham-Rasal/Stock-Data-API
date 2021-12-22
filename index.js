@@ -89,7 +89,7 @@ function createTable(props){
     var sql = `CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, ${props.one} VARCHAR(255), ${props.two} VARCHAR(255))`;
   con.query(sql, function (err, result) {
     if (err) throw err;
-    console.log("Table created");
+    console.log("Table created!");
   });
 
 }
